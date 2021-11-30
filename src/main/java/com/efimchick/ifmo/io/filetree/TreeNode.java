@@ -2,16 +2,13 @@ package com.efimchick.ifmo.io.filetree;
 
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class TreeNode<T> implements Iterable<TreeNode<T>> {
     public T data;
     public TreeNode<T> parent;
     public List<TreeNode<T>> children;
-    private List<TreeNode<T>> elementsIndex;
+    private final List<TreeNode<T>> elementsIndex;
 
     public TreeNode(T data) {
         this.data = data;
@@ -71,7 +68,7 @@ public class TreeNode<T> implements Iterable<TreeNode<T>> {
 
     public static String renderDirectoryTree(TreeNode<File> tree) {
         List<StringBuilder> lines = renderDirectoryTreeLines(tree);
-        String newline = "\n";
+        String newline = System.lineSeparator();
         StringBuilder sb = new StringBuilder(lines.size() * 20);
         for (StringBuilder line : lines) {
             sb.append(line);
